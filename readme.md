@@ -7,7 +7,7 @@ test:= TNetFormat.ToString('Hallo {0} {1:D2} {2:dd-MM-yyyy HH:mm:ss}', 'Test', 2
 ```
 Result:
 ```
-Hallo 02 23.01.2024 12:00:01
+Hallo Test 02 23.01.2024 12:00:01
 ```
 
 As you can see, all Delphitypes are accepted as input, and they will be convertet to String, and replaces
