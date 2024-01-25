@@ -19,9 +19,9 @@ It is testet in Delphi 10.3
 ## Simple Syntax
 
 ```
-test:= TNetFormat.ToString('Hallo')
-test:= TNetFormat.ToString('Hallo {0}', 'Test')
-test:= TNetFormat.ToString('Hallo {0}', 2)
+test:= TStr('Hallo').ToString()
+test:= TStr('Hallo {0}').Params('Test')
+test:= TStr('Hallo {0}').Params(2)
 ```
 
 Result:
@@ -36,7 +36,7 @@ Use {0} till {9} to specifiy the Position of Parameter.
 ## Complex Syntax
 
 ```
-test:= TNetFormat.ToString('Hallo {0:F2}', 2)
+test:= TStr('Hallo {0:F2}').Params(2)
 ```
 
 Result:
@@ -48,7 +48,7 @@ Use a ':', one of the Spezifier and 'C', 'D' or 'F' followed by a number.
 More about the Spezifiers below.
 
 ```
-test:= TNetFormat.ToString('Hallo {0:dd.MM.}', testdate.Now)
+test:= TStr('Hallo {0:dd.MM.}').Params(testdate.Now)
 ```
 
 Result:
