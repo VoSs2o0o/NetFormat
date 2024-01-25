@@ -1,4 +1,4 @@
-# Various Formatting Tools
+﻿# Various Formatting Tools
 
 Core of this collection is the NetFormat-Unit. Use it to easily format a string in Delphi.
 
@@ -12,6 +12,9 @@ Hallo Test 02 23.01.2024 12:00:01
 
 As you can see, all Delphitypes are accepted as input, and they will be convertet to String, and replaces
 the appropiate position in the String.
+
+NetFormat.pas uses Generics, and Advanced RTTI, RegEx and shoul be running with Delphi XE or later.
+It is testet in Delphi 10.3
 
 ## Simple Syntax
 

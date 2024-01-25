@@ -1,3 +1,5 @@
 /Win32/
 *.local
 *.identcache
+*.~*
+/__recovery/
