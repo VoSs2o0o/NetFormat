@@ -1,4 +1,4 @@
-﻿# Various Formatting Tools
+﻿# NetFormat and Formatting Tools
 
 Core of this collection is the NetFormat-Unit. Use it to easily format a string in Delphi.
 
@@ -103,3 +103,20 @@ for fast and easy debugging an TDebug.Print Funktion is added. It work like the 
 
 This lib is not related to the rest of the code, but it is very helpfull to handle TDateTime.
 Colin Johnsun, https://github.com/colinj, MIT License
+
+## History
+### 23.01.2024: Version 1.0
+- first version :-)
+
+### 25.01.2024: Version 2.0
+- Old:
+```
+NetFormat.ToString('Hallo {0} {1:D4} {2} {3}',
+                   'Welt', 55, 7.7, testdate);
+```
+- New: Format changed, I have found a more ellegant and slightly shorter Method:
+```
+TStr('Hallo {0} {1:D4} {2} {3}').
+    Params('Welt', 55, 7.7, testdate);
+```
+- some minors addes to README

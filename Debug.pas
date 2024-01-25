@@ -43,7 +43,7 @@ uses
     var
       res: string;
     begin
-      res:= TNetFormat.ToString(msg, nil, nil, nil, nil, nil, nil, nil, nil, nil);
+      res:= TStr(msg).Params(nil, nil, nil, nil, nil, nil, nil, nil, nil);
       OutputDebugString(PWChar(res));
     end;
 
@@ -51,7 +51,7 @@ uses
     var
       res: string;
     begin
-      res:=TNetFormat.ToString(msg, val1, nil, nil, nil, nil, nil, nil, nil, nil);
+      res:=TStr(msg).Params(val1, nil, nil, nil, nil, nil, nil, nil, nil);
       OutputDebugString(PWChar(res));
     end;
 
@@ -59,7 +59,7 @@ uses
     var
       res: string;
     begin
-      res:=TNetFormat.ToString(msg, val1, val2, nil, nil, nil, nil, nil, nil, nil);
+      res:=TStr(msg).Params(val1, val2, nil, nil, nil, nil, nil, nil, nil);
       OutputDebugString(PWChar(res));
     end;
 
@@ -68,7 +68,7 @@ uses
     var
       res: string;
     begin
-      res:=TNetFormat.ToString(msg, val1, val2, val3, nil, nil, nil, nil, nil, nil);
+      res:=TStr(msg).Params(val1, val2, val3, nil, nil, nil, nil, nil, nil);
       OutputDebugString(PWChar(res));
     end;
 
@@ -77,7 +77,7 @@ uses
     var
       res: string;
     begin
-      res:=TNetFormat.ToString(msg, val1, val2, val3, val4, nil, nil, nil, nil, nil);
+      res:=TStr(msg).Params(val1, val2, val3, val4, nil, nil, nil, nil, nil);
       OutputDebugString(PWChar(res));
     end;
 
@@ -86,7 +86,7 @@ uses
     var
       res: string;
     begin
-      res:=TNetFormat.ToString(msg, val1, val2, val3, val4, val5, nil, nil, nil, nil);
+      res:=TStr(msg).Params(val1, val2, val3, val4, val5, nil, nil, nil, nil);
       OutputDebugString(PWChar(res));
     end;
 
@@ -96,7 +96,7 @@ uses
    var
       res: string;
     begin
-      res:=TNetFormat.ToString(msg, val1, val2, val3, val4, val5, val6, nil, nil, nil);
+      res:=TStr(msg).Params(val1, val2, val3, val4, val5, val6, nil, nil, nil);
       OutputDebugString(PWChar(res));
     end;
 
@@ -106,7 +106,7 @@ uses
     var
       res: string;
     begin
-      res:=TNetFormat.ToString(msg, val1, val2, val3, val4, val5, val6, val7, nil, nil);
+      res:=TStr(msg).Params(val1, val2, val3, val4, val5, val6, val7, nil, nil);
       OutputDebugString(PWChar(res));
     end;
 
@@ -116,7 +116,7 @@ uses
     var
       res: string;
     begin
-      res:=TNetFormat.ToString(msg, val1, val2, val3, val4, val5, val6, val7, val8, nil);
+      res:=TStr(msg).Params(val1, val2, val3, val4, val5, val6, val7, val8, nil);
       OutputDebugString(PWChar(res));
     end;
 
@@ -126,7 +126,7 @@ uses
    var
      res: string;
    begin
-     res:=TNetFormat.ToString(msg, val1, val2, val3, val4, val5, val6, val7, val8, val9);
+     res:=TStr(msg).Params(val1, val2, val3, val4, val5, val6, val7, val8, val9);
      OutputDebugString(PWChar(res));
    end;
 end.

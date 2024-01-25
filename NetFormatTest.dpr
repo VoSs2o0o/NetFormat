@@ -1,4 +1,4 @@
-program consoletest;
+program NetFormatTest;
 
 {$APPTYPE CONSOLE}
 
@@ -7,9 +7,9 @@ program consoletest;
 uses
   System.SysUtils,
   Application in 'Application.pas',
-  NetFormat in 'NetFormat.pas',
   Debug in 'Debug.pas',
-  DateTimeHelper in 'DateTimeHelper.pas';
+  DateTimeHelper in 'DateTimeHelper.pas',
+  NetFormat in 'NetFormat.pas';
 
 begin
 

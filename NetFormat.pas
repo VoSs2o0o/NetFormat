@@ -1,13 +1,16 @@
 unit NetFormat;
 
-//Specifier C=Currency, D=Number, F=Float
+//Core of this collection is the NetFormat-Unit. Use it to easily format a string in Delphi.
+//Specifier C=Currency, D=Number, F=Float, further Infos in README.md
+
+//VoSs2o0o (c) 2024-01-25, Apache 2.0 License
 
 interface
-
 uses
   System.Generics.Collections;
 
-  type
+type
+
     TFormatSpecifier = class
     public
       rawString: string;
@@ -18,55 +21,57 @@ uses
       function dtfType(): string;
     end;
 
-    TNetFormat = class
+    TStr = record
     private
-      class function _FillValues(const msg: string; vals: TList<string>;
-                                          fmts: TList<TFormatSpecifier>): string;
-      class function _getFormatspec(msg: string; idx: integer): TFormatSpecifier;
+       function _FillValues(vals: TList<string>;
+                            fmts: TList<TFormatSpecifier>): string;
+       function _getFormatspec(idx: integer): TFormatSpecifier;
     public
-      class function ToString(const msg: string): string;
-                                                  reintroduce; overload;
+       template: string;
 
-      class function ToString<T1>(const msg: string; val1: T1): string;
-                                                  reintroduce; overload;
-      class function ToString<T1, T2>(const msg: string; val1: T1; val2: T2): string;
-                                                               reintroduce; overload;
+       class operator Explicit(template: string): TStr;
 
-      class function ToString<T1, T2, T3>(const msg: string;
-                      val1: T1; val2: T2; val3: T3): string;
-                                                  reintroduce; overload;
+       function ToString(): string; reintroduce; overload;
 
-      class function ToString<T1, T2, T3, T4>(const msg: string;
-                      val1: T1; val2: T2; val3: T3; val4: T4): string;
-                                                  reintroduce; overload;
+       function Params<T1>(val1: T1): string; reintroduce; overload;
 
-      class function ToString<T1, T2, T3, T4, T5>(const msg: string;
-                      val1: T1; val2: T2; val3: T3; val4: T4; val5: T5): string;
-                                                               reintroduce; overload;
+       function Params<T1, T2>(val1: T1; val2: T2): string;
+                                              reintroduce; overload;
 
-      class function ToString<T1, T2, T3, T4, T5, T6>(const msg: string;
-                      val1: T1; val2: T2; val3: T3; val4: T4; val5: T5;
-                      val6: T6): string; reintroduce; overload;
+       function Params<T1, T2, T3>(val1: T1; val2: T2;
+                       val3: T3): string;     reintroduce; overload;
 
-      class function ToString<T1, T2, T3, T4, T5, T6, T7>(const msg: string;
-                      val1: T1; val2: T2; val3: T3; val4: T4; val5: T5;
-                      val6: T6; val7: T7): string; reintroduce; overload;
+       function Params<T1, T2, T3, T4>(val1: T1; val2: T2;
+                       val3: T3; val4: T4): string;
+                                              reintroduce; overload;
 
-      class function ToString<T1, T2, T3, T4, T5, T6, T7, T8>(const msg: string;
-                      val1: T1; val2: T2; val3: T3; val4: T4; val5: T5;
-                      val6: T6; val7: T7; val8: T8): string;
-                                                  reintroduce; overload;
+       function Params<T1, T2, T3, T4, T5>(val1: T1; val2: T2;
+                       val3: T3; val4: T4; val5: T5): string;
+                                             reintroduce; overload;
 
-      class function ToString<T1, T2, T3, T4, T5, T6, T7, T8, T9>(const msg: string;
-                      val1: T1; val2: T2; val3: T3; val4: T4; val5: T5;
-                      val6: T6; val7: T7; val8: T8; val9: T9): string;
-                                                              reintroduce; overload;
+       function Params<T1, T2, T3, T4, T5, T6>(val1: T1; val2: T2;
+                       val3: T3; val4: T4; val5: T5; val6: T6): string;
+                                             reintroduce; overload;
+
+       function Params<T1, T2, T3, T4, T5, T6, T7>(val1: T1; val2: T2;
+                       val3: T3; val4: T4; val5: T5; val6: T6;
+                       val7: T7): string;    reintroduce; overload;
+
+       function Params<T1, T2, T3, T4, T5, T6, T7, T8>(val1: T1; val2: T2;
+                       val3: T3; val4: T4; val5: T5; val6: T6;
+                       val7: T7; val8: T8): string;
+                                             reintroduce; overload;
+
+       function Params<T1, T2, T3, T4, T5, T6, T7, T8, T9>(val1: T1; val2: T2;
+                       val3: T3; val4: T4; val5: T5; val6: T6;
+                       val7: T7; val8: T8; val9: T9): string;
+                                             reintroduce; overload;
     end;
 
 implementation
-
 uses
-   Winapi.Windows, System.TypInfo, System.SysUtils, System.Rtti, System.RegularExpressions;
+   Winapi.Windows, System.TypInfo, System.SysUtils, System.Rtti,
+   System.RegularExpressions;
 
    function TFormatSpecifier.ValToStr<T>(val: T): string;
    var
@@ -124,14 +129,159 @@ uses
      result:= TRegex.Replace(result, '(h{1,2})', '\1AM/PM');
    end;
 
-   class function TNetFormat._FillValues(const msg: string; vals: TList<string>;
-                                            fmts: TList<TFormatSpecifier>): string;
+   class operator TStr.Explicit(template: string): TStr;
+   begin
+      result.template:=template;
+   end;
+
+   function TStr.ToString(): string;
+   begin
+     result:= Params(nil, nil, nil, nil, nil, nil, nil, nil, nil);
+   end;
+
+   function TStr.Params<T1>(val1: T1): string;
+   begin
+     result:= Params(val1, nil, nil, nil, nil, nil, nil, nil, nil);
+   end;
+
+   function TStr.Params<T1, T2>(val1: T1; val2: T2): string;
+   begin
+     result:= Params(val1, val2, nil, nil, nil, nil, nil, nil, nil);
+   end;
+
+   function TStr.Params<T1, T2, T3>(val1: T1; val2: T2;
+                   val3: T3): string;
+   begin
+     result:= Params(val1, val2, val3, nil, nil, nil, nil, nil, nil);
+   end;
+
+   function TStr.Params<T1, T2, T3, T4>(val1: T1; val2: T2;
+                   val3: T3; val4: T4): string;
+   begin
+     result:= Params(val1, val2, val3, val4, nil, nil, nil, nil, nil);
+   end;
+
+   function TStr.Params<T1, T2, T3, T4, T5>(val1: T1; val2: T2;
+                   val3: T3; val4: T4; val5: T5): string;
+   begin
+     result:= Params(val1, val2, val3, val4, val5, nil, nil, nil, nil);
+   end;
+
+   function TStr.Params<T1, T2, T3, T4, T5, T6>(val1: T1; val2: T2;
+                   val3: T3; val4: T4; val5: T5; val6: T6): string;
+   begin
+     result:= Params(val1, val2, val3, val4, val5, val6, nil, nil, nil);
+   end;
+
+   function TStr.Params<T1, T2, T3, T4, T5, T6, T7>(val1: T1; val2: T2;
+                   val3: T3; val4: T4; val5: T5; val6: T6;
+                   val7: T7): string;
+   begin
+     result:= Params(val1, val2, val3, val4, val5, val6, val7, nil, nil);
+   end;
+
+   function TStr.Params<T1, T2, T3, T4, T5, T6, T7, T8>(val1: T1; val2: T2;
+                   val3: T3; val4: T4; val5: T5; val6: T6;
+                   val7: T7; val8: T8): string;
+   begin
+     result:= Params(val1, val2, val3, val4, val5, val6, val7, val8, nil);
+   end;
+
+   function TStr.Params<T1, T2, T3, T4, T5, T6, T7, T8, T9>(val1: T1; val2: T2;
+                       val3: T3; val4: T4; val5: T5; val6: T6;
+                       val7: T7; val8: T8; val9: T9): string;
+   var
+     vals: TList<string>;
+     fmts: TList<TFormatSpecifier>;
+   begin
+     vals:= TList<string>.Create();
+     fmts:= TList<TFormatSpecifier>.Create();
+     if PPointer(@val1)^ <> nil then
+     begin
+       fmts.Add(_getFormatspec(0));
+       vals.Add(fmts.Last().ValToStr<T1>(val1));
+     end;
+     if PPointer(@val2)^ <> nil then
+     begin
+       fmts.Add(_getFormatspec(1));
+       vals.Add(fmts.Last().ValToStr<T2>(val2));
+     end;
+     if PPointer(@val3)^ <> nil then
+     begin
+       fmts.Add(_getFormatspec(2));
+       vals.Add(fmts.Last().ValToStr<T3>(val3));
+     end;
+     if PPointer(@val4)^ <> nil then
+     begin
+       fmts.Add(_getFormatspec(3));
+       vals.Add(fmts.Last().ValToStr<T4>(val4));
+     end;
+     if PPointer(@val5)^ <> nil then
+     begin
+       fmts.Add(_getFormatspec(4));
+       vals.Add(fmts.Last().ValToStr<T5>(val5));
+     end;
+     if PPointer(@val6)^ <> nil then
+     begin
+       fmts.Add(_getFormatspec(5));
+       vals.Add(fmts.Last().ValToStr<T6>(val6));
+     end;
+     if PPointer(@val7)^ <> nil then
+     begin
+       fmts.Add(_getFormatspec(6));
+       vals.Add(fmts.Last().ValToStr<T7>(val7));
+     end;
+     if PPointer(@val8)^ <> nil then
+     begin
+       fmts.Add(_getFormatspec(7));
+       vals.Add(fmts.Last().ValToStr<T8>(val8));
+     end;
+     if PPointer(@val9)^ <> nil then
+     begin
+       fmts.Add(_getFormatspec(8));
+       vals.Add(fmts.Last().ValToStr<T9>(val9));
+     end;
+
+     result:= _FillValues(vals, fmts);
+     //OutputDebugString(PWideChar(res));
+   end;
+
+   function TStr._getFormatspec(idx: integer): TFormatSpecifier;
+   var
+     pattern: string;
+     match: TMatch;
+   begin
+     pattern:= '\{' + IntToStr(idx) + '(:(\w)?(\d)?)?\}';
+     match:= TRegex.Match(template, pattern);
+     result:= TFormatSpecifier.Create();
+     result.rawString:= match.Value;
+     if match.Success then
+     begin
+        if match.Groups.Count > 2 then
+          result.fType:= match.Groups[2].Value;
+        if match.Groups.Count > 3 then
+          result.fLength:= StrToInt(match.Groups[3].Value);
+        exit;
+     end;
+
+     pattern:= '\{' + IntToStr(idx) + '(:([dMyHhms\/:. -]+))?\}';
+     match:= TRegex.Match(template, pattern);
+     result.rawString:= match.Value;
+     if match.Success then
+     begin
+        if match.Groups.Count > 2 then
+          result.fType:= match.Groups[2].Value;
+     end;
+   end;
+
+   function TStr._FillValues(vals: TList<string>;
+                             fmts: TList<TFormatSpecifier>): string;
    var
       val: string;
       idx: integer;
       rawString: string;
    begin
-      result:= msg;
+      result:= template;
       for idx:= 0 to 9 do
       begin
         if vals.Count > idx then
@@ -147,146 +297,5 @@ uses
         result:= result.replace(rawString, val);
       end;
 
-   end;
-
-   class function TNetFormat.ToString(const msg: string): string;
-   begin;
-     result:= ToString(msg, nil, nil, nil, nil, nil, nil, nil, nil, nil);
-   end;
-
-   class function TNetFormat.ToString<T1>(const msg: string; val1: T1): string;
-   begin;
-     result:= ToString(msg, val1, nil, nil, nil, nil, nil, nil, nil, nil);
-   end;
-
-   class function TNetFormat.ToString<T1, T2>(const msg: string; val1: T1; val2: T2): string;
-   begin;
-     result:= ToString(msg, val1, val2, nil, nil, nil, nil, nil, nil, nil);
-   end;
-
-   class function TNetFormat.ToString<T1, T2, T3>(const msg: string;
-                   val1: T1; val2: T2; val3: T3): string;
-   begin;
-     result:= ToString(msg, val1, val2, val3, nil, nil, nil, nil, nil, nil);
-   end;
-
-   class function TNetFormat.ToString<T1, T2, T3, T4>(const msg: string;
-                   val1: T1; val2: T2; val3: T3; val4: T4): string;
-   begin;
-     result:= ToString(msg, val1, val2, val3, val4, nil, nil, nil, nil, nil);
-   end;
-
-   class function TNetFormat.ToString<T1, T2, T3, T4, T5>(const msg: string;
-                   val1: T1; val2: T2; val3: T3; val4: T4; val5: T5): string;
-   begin;
-     result:= ToString(msg, val1, val2, val3, val4, val5, nil, nil, nil, nil);
-   end;
-
-   class function TNetFormat.ToString<T1, T2, T3, T4, T5, T6>(const msg: string;
-                   val1: T1; val2: T2; val3: T3; val4: T4; val5: T5; val6: T6): string;
-   begin;
-     result:= ToString(msg, val1, val2, val3, val4, val5, val6, nil, nil, nil);
-   end;
-
-   class function TNetFormat.ToString<T1, T2, T3, T4, T5, T6, T7>(const msg: string;
-                   val1: T1; val2: T2; val3: T3; val4: T4; val5: T5; val6: T6;
-                   val7: T7): string;
-   begin;
-     result:= ToString(msg, val1, val2, val3, val4, val5, val6, val7, nil, nil);
-   end;
-
-   class function TNetFormat.ToString<T1, T2, T3, T4, T5, T6, T7, T8>(const msg: string;
-                   val1: T1; val2: T2; val3: T3; val4: T4; val5: T5; val6: T6;
-                   val7: T7; val8: T8): string;
-   begin;
-     result:= ToString(msg, val1, val2, val3, val4, val5, val6, val7, val8, nil);
-   end;
-
-   class function TNetFormat._getFormatspec(msg: string; idx: integer): TFormatSpecifier;
-   var
-     pattern: string;
-     match: TMatch;
-   begin
-     pattern:= '\{' + IntToStr(idx) + '(:(\w)?(\d)?)?\}';
-     match:= TRegex.Match(msg, pattern);
-     result:= TFormatSpecifier.Create();
-     result.rawString:= match.Value;
-     if match.Success then
-     begin
-        if match.Groups.Count > 2 then
-          result.fType:= match.Groups[2].Value;
-        if match.Groups.Count > 3 then
-          result.fLength:= StrToInt(match.Groups[3].Value);
-        exit;
-     end;
-
-     pattern:= '\{' + IntToStr(idx) + '(:([dMyHhms\/:. -]+))?\}';
-     match:= TRegex.Match(msg, pattern);
-     result.rawString:= match.Value;
-     if match.Success then
-     begin
-        if match.Groups.Count > 2 then
-          result.fType:= match.Groups[2].Value;
-     end;
-   end;
-
-   class function TNetFormat.ToString<T1, T2, T3, T4, T5, T6, T7, T8, T9>(const msg: string;
-                   val1: T1; val2: T2; val3: T3; val4: T4; val5: T5; val6: T6;
-                   val7: T7; val8: T8; val9: T9): string;
-   var
-     vals: TList<string>;
-     fmt: TFormatSpecifier;
-     fmts: TList<TFormatSpecifier>;
-   begin
-     vals:= TList<string>.Create();
-     fmts:= TList<TFormatSpecifier>.Create();
-     if PPointer(@val1)^ <> nil then
-     begin
-       fmts.Add(_getFormatspec(msg, 0));
-       vals.Add(fmts.Last().ValToStr<T1>(val1));
-     end;
-     if PPointer(@val2)^ <> nil then
-     begin
-       fmts.Add(_getFormatspec(msg, 1));
-       vals.Add(fmts.Last().ValToStr<T2>(val2));
-     end;
-     if PPointer(@val3)^ <> nil then
-     begin
-       fmts.Add(_getFormatspec(msg, 2));
-       vals.Add(fmts.Last().ValToStr<T3>(val3));
-     end;
-     if PPointer(@val4)^ <> nil then
-     begin
-       fmts.Add(_getFormatspec(msg, 3));
-       vals.Add(fmts.Last().ValToStr<T4>(val4));
-     end;
-     if PPointer(@val5)^ <> nil then
-     begin
-       fmts.Add(_getFormatspec(msg, 4));
-       vals.Add(fmts.Last().ValToStr<T5>(val5));
-     end;
-     if PPointer(@val6)^ <> nil then
-     begin
-       fmts.Add(_getFormatspec(msg, 5));
-       vals.Add(fmts.Last().ValToStr<T6>(val6));
-     end;
-     if PPointer(@val7)^ <> nil then
-     begin
-       fmts.Add(_getFormatspec(msg, 6));
-       vals.Add(fmts.Last().ValToStr<T7>(val7));
-     end;
-     if PPointer(@val8)^ <> nil then
-     begin
-       fmts.Add(_getFormatspec(msg, 7));
-       vals.Add(fmts.Last().ValToStr<T8>(val8));
-     end;
-     if PPointer(@val9)^ <> nil then
-     begin
-       fmts.Add(_getFormatspec(msg, 8));
-       vals.Add(fmts.Last().ValToStr<T9>(val9));
-     end;
-
-     result:= _FillValues(msg, vals, fmts);
-     //OutputDebugString(PWideChar(res));
    end;
 end.
