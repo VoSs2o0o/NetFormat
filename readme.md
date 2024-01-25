@@ -119,4 +119,5 @@ NetFormat.ToString('Hallo {0} {1:D4} {2} {3}',
 TStr('Hallo {0} {1:D4} {2} {3}').
     Params('Welt', 55, 7.7, testdate);
 ```
+- Structure changed from class to record
 - some minors addes to README
