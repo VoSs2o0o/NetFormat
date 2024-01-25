@@ -3,7 +3,7 @@
 Core of this collection is the NetFormat-Unit. Use it to easily format a string in Delphi.
 
 ```
-test:= TNetFormat.ToString('Hallo {0} {1:D2} {2:dd-MM-yyyy HH:mm:ss}', 'Test', 2.2, testdate.Now)
+test:= TStr('Hallo {0} {1:D2} {2:dd-MM-yyyy HH:mm:ss}').Params(, 'Test', 2.2, testdate.Now)
 ```
 Result:
 ```
