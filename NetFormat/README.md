@@ -67,6 +67,7 @@ Use the Date/Time Syntax to Format a Date and/or Time. More about the Spezifiers
 | C          | Int/Float | specifies decimals       | displays a Currency-Value       | 15    -> C2: 15.00 € |
 | D          | Int/Float | leading zeros till length| number without decimals         | 9.1   -> D3: 009     |
 | F          | Int/Float | specifies decimals       | float value                     | 2.457 -> F2: 2.45    |
+| X          | Int/Float | specifies decimals       | HexString                       | 27    -> X2: 1B      |
 | various    | TDateTime | <none>                   | Formates a TDateTime, see below | see below            |
 
 ### TDateTime Specifiers available:
