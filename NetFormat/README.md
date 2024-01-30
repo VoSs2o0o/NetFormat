@@ -3,7 +3,7 @@
 Core of this collection is the NetFormat-Unit. Use it to easily format a string in Delphi.
 
 ```
-test:= TStr('Hallo {0} {1:D2} {2:dd-MM-yyyy HH:mm:ss}').Params(, 'Test', 2.2, testdate.Now)
+test:= FStr('Hallo {0} {1:D2} {2:dd-MM-yyyy HH:mm:ss}').Params('Test', 2.2, testdate.Now)
 ```
 Result:
 ```
@@ -19,9 +19,9 @@ It is testet in Delphi 10.3
 ## Simple Syntax
 
 ```
-test:= TStr('Hallo').ToString()
-test:= TStr('Hallo {0}').Params('Test')
-test:= TStr('Hallo {0}').Params(2)
+test:= FStr('Hallo').ToString()
+test:= FStr('Hallo {0}').Params('Test')
+test:= FStr('Hallo {0}').Params(2)
 ```
 
 Result:
@@ -36,7 +36,7 @@ Use {0} till {9} to specifiy the Position of Parameter.
 ## Complex Syntax
 
 ```
-test:= TStr('Hallo {0:F2}').Params(2)
+test:= FStr('Hallo {0:F2}').Params(2)
 ```
 
 Result:
@@ -48,7 +48,7 @@ Use a ':', one of the Spezifier and 'C', 'D' or 'F' followed by a number.
 More about the Spezifiers below.
 
 ```
-test:= TStr('Hallo {0:dd.MM.}').Params(testdate.Now)
+test:= FStr('Hallo {0:dd.MM.}').Params(testdate.Now)
 ```
 
 Result:
@@ -95,14 +95,35 @@ Use the Date/Time Syntax to Format a Date and/or Time. More about the Spezifiers
 in difference to Delphis FormatDateTime 'M' means Month, and 'm' means Minute, 'h' is 12 based Hour, 'H' is 24 based Hour.
 Its like Microsoft Format Specifier.
 
+## Alternative Call NetFormat
+
+```
+test:= TNetFormat.Str('Hallo {0} {1:D2} {2:dd-MM-yyyy HH:mm:ss}', 'Test', 2.2, testdate.Now)
+```
+
 ## Debug
 
-for fast and easy debugging an TDebug.Print Funktion is added. It work like the TNetFormat.ToString method.
+for fast and easy debugging an TDebug.Print Funktion is added. It work like the TNetFormat.Str method.
+
+```
+test:= Debug.Print('Hallo {0} {1:D2} {2:dd-MM-yyyy HH:mm:ss}', 'Test', 2.2, testdate.Now)
+```
 
 ## DateTimeHelper
 
 This lib is not related to the rest of the code, but it is very helpfull to handle TDateTime.
-Colin Johnsun, https://github.com/colinj, MIT License
+Colin Johnsun, https://github.com/colinj, MIT License.
+If you own Delphi 11, a TDateTimeHelper is integrated in System.DateUtils with Update 2
+
+## Formatsettings
+
+You can specifiy your own Formatsettings with 'fmt' (TFormatSettings or LCID):
+
+```
+test:= FStr('Hallo {0:F2}').fmt('de-DE').Params(2)
+```
+In the example above, FStr uses German Settings, '1,00 €' istead of '$1.00' for example.
+Default is your machine standard.
 
 ## History
 ### 23.01.2024: Version 1.0
@@ -121,3 +142,24 @@ TStr('Hallo {0} {1:D4} {2} {3}').
 ```
 - Structure changed from class to record
 - some minors addes to README
+
+### 28.01.2024: Version 3.0
+- Old:
+```
+TStr('Hallo {0} {1:D4} {2} {3}').
+    Params('Welt', 55, 7.7, testdate);
+```
+- New: TStr -> FStr, and old Format readded, beause some People wants a more
+  Delphi-Format like command:
+```
+FStr('Hallo {0} {1:D4} {2} {3}').
+               Params('Welt', 55, 7.7, testdate);
+NetFormat.TStr('Hallo {0} {1:D4} {2} {3}',
+               'Welt', 55, 7.7, testdate);
+```
+- Namespace VTools added to avoid conficts
+- Hex-Format added ("X")
+- TFormatStettings Support
+- Tests added
+- 'writeln' to Example added, to also have an console output
+- some minors changes to README

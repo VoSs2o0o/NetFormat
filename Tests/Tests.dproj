@@ -1,14 +1,14 @@
 ﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <PropertyGroup>
-        <ProjectGuid>{BDBDCC86-FF7D-4464-855D-677BD6B40F4E}</ProjectGuid>
+        <ProjectGuid>{275FDF2C-B7D4-4FDD-A7B8-09583121FAC0}</ProjectGuid>
         <ProjectVersion>20.1</ProjectVersion>
         <FrameworkType>None</FrameworkType>
-        <MainSource>NetFormatTest.dpr</MainSource>
         <Base>True</Base>
         <Config Condition="'$(Config)'==''">Debug</Config>
         <Platform Condition="'$(Platform)'==''">Win32</Platform>
         <TargetedPlatforms>1</TargetedPlatforms>
         <AppType>Console</AppType>
+        <MainSource>Tests.dpr</MainSource>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Config)'=='Base' or '$(Base)'!=''">
         <Base>true</Base>
@@ -48,23 +48,21 @@
         <DCC_F>false</DCC_F>
         <DCC_K>false</DCC_K>
         <DCC_Namespace>System;Xml;Data;Datasnap;Web;Soap;$(DCC_Namespace)</DCC_Namespace>
-        <SanitizedProjectName>NetFormatTest</SanitizedProjectName>
+        <UsingDelphiRTL>true</UsingDelphiRTL>
+        <Icon_MainIcon>$(BDS)\bin\delphi_PROJECTICON.ico</Icon_MainIcon>
+        <Icns_MainIcns>$(BDS)\bin\delphi_PROJECTICNS.icns</Icns_MainIcns>
+        <DCC_UnitSearchPath>$(DUnitX);$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
+        <SanitizedProjectName>Tests</SanitizedProjectName>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win32)'!=''">
-        <DCC_UsePackage>DBXSqliteDriver;RESTComponents;lmdrtsearch;lmdrtweb;DBXInterBaseDriver;GR32_RSXE3;vclactnband;vclFireDAC;tethering;svnui;lmdrtl;lmdrtplugin;FireDACADSDriver;vcltouch;lmdrtbar;vcldb;bindcompfmx;svn;lmdrtchartdb;inetdb;VirtualTreesDR;FmxTeeUI;FireDACIBDriver;fmx;fmxdae;lmdrtdialog;vclib;lmdrttools;lmdrtrtf;dbexpress;IndyCore;GR32_DSGN_RSXE3;vclx;dsnap;lmdrtrtlx;lmdrtthemes;FireDACCommon;lmdrtgrid;RESTBackendComponents;VCLRESTComponents;soapserver;JclDeveloperTools;lmdrtinspector;vclie;lmdrtfx;bindengine;DBXMySQLDriver;CloudService;FireDACMySQLDriver;lmdrtsearchdb;FireDACCommonODBC;FireDACCommonDriver;inet;bindcompdbx;IndyIPCommon;vcl;IndyIPServer;lmdrttoolsdb;IndySystem;dsnapcon;lmdrtsys;FireDACMSAccDriver;fmxFireDAC;lmdrtchart;vclimg;TeeDB;FireDAC;Jcl;lmdrttxt;FireDACSqliteDriver;FireDACPgDriver;ibmonitor;FMXTee;soaprtl;DbxCommonDriver;ibxpress;Tee;xmlrtl;soapmidas;ibxbindings;fmxobj;vclwinx;lmdrtrtfdb;rtl;RFindUnit;DbxClientDriver;CustomIPTransport;vcldsnap;lmdrtprint;bindcomp;appanalytics;lmdrtdocking;IndyIPClient;bindcompvcl;TeeUI;dbxcds;VclSmp;lmdrttxtdb;adortl;JclVcl;dsnapxml;dbrtl;inetdbxpress;IndyProtocols;lmdrtshell;lmdrtstorage;JclContainers;lmdrtcore;fmxase;$(DCC_UsePackage)</DCC_UsePackage>
+        <DCC_UsePackage>DataSnapServer;vclwinx;emshosting;fmx;DbxCommonDriver;vclie;bindengine;VCLRESTComponents;IndyIPCommon;DBXMSSQLDriver;emsclient;appanalytics;IndyProtocols;vclx;Skia.Package.RTL;dbxcds;vcledge;IndyIPClient;bindcompvclwinx;FmxTeeUI;emsedge;bindcompfmx;DBXFirebirdDriver;madBasic_;inetdb;ibmonitor;DbxClientDriver;Tee;soapmidas;vclactnband;TeeUI;dbexpress;DBXMySQLDriver;VclSmp;inet;DataSnapCommon;vcltouch;fmxase;DBXOdbcDriver;dbrtl;Skia.Package.FMX;fmxdae;TeeDB;CustomIPTransport;DataSnapIndy10ServerTransport;DataSnapConnectors;DBXInterBaseDriver;vcldsnap;madExcept_;IndySystem;Skia.Package.VCL;vcldb;ibxbindings;vclFireDAC;madDisAsm_;bindcomp;DataSnapServerMidas;emsserverresource;IndyCore;RESTBackendComponents;bindcompdbx;rtl;RESTComponents;DBXSqliteDriver;vcl;adortl;dsnapxml;IndyIPServer;DataSnapClient;DataSnapProviderClient;dsnapcon;DBXSybaseASEDriver;DBXDb2Driver;vclimg;DataSnapFireDAC;emsclientfiredac;inetdbxpress;xmlrtl;tethering;ibxpress;bindcompvcl;dsnap;DBXSybaseASADriver;CloudService;DBXOracleDriver;DBXInformixDriver;vclib;DataSnapNativeClient;bindcompvclsmp;FMXTee;fmxobj;DatasnapConnectorsFreePascal;soaprtl;soapserver;$(DCC_UsePackage)</DCC_UsePackage>
         <DCC_Namespace>Winapi;System.Win;Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win;Bde;$(DCC_Namespace)</DCC_Namespace>
         <BT_BuildType>Debug</BT_BuildType>
         <VerInfo_Keys>CompanyName=;FileDescription=$(MSBuildProjectName);FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProgramID=com.embarcadero.$(MSBuildProjectName);ProductName=$(MSBuildProjectName);ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
         <VerInfo_Locale>1033</VerInfo_Locale>
-        <DCC_ConsoleTarget>true</DCC_ConsoleTarget>
-        <UWP_DelphiLogo44>$(BDS)\bin\Artwork\Windows\UWP\delphi_UwpDefault_44.png</UWP_DelphiLogo44>
-        <UWP_DelphiLogo150>$(BDS)\bin\Artwork\Windows\UWP\delphi_UwpDefault_150.png</UWP_DelphiLogo150>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win64)'!=''">
-        <DCC_UsePackage>DBXSqliteDriver;RESTComponents;lmdrtsearch;lmdrtweb;DBXInterBaseDriver;vclactnband;vclFireDAC;tethering;lmdrtl;lmdrtplugin;FireDACADSDriver;vcltouch;lmdrtbar;vcldb;bindcompfmx;lmdrtchartdb;inetdb;VirtualTreesDR;FmxTeeUI;FireDACIBDriver;fmx;fmxdae;lmdrtdialog;vclib;lmdrttools;lmdrtrtf;dbexpress;IndyCore;vclx;dsnap;lmdrtrtlx;lmdrtthemes;FireDACCommon;lmdrtgrid;RESTBackendComponents;VCLRESTComponents;soapserver;JclDeveloperTools;lmdrtinspector;vclie;lmdrtfx;bindengine;DBXMySQLDriver;CloudService;FireDACMySQLDriver;lmdrtsearchdb;FireDACCommonODBC;FireDACCommonDriver;inet;bindcompdbx;IndyIPCommon;vcl;IndyIPServer;lmdrttoolsdb;IndySystem;dsnapcon;lmdrtsys;FireDACMSAccDriver;fmxFireDAC;lmdrtchart;vclimg;TeeDB;FireDAC;Jcl;lmdrttxt;FireDACSqliteDriver;FireDACPgDriver;ibmonitor;FMXTee;soaprtl;DbxCommonDriver;ibxpress;Tee;xmlrtl;soapmidas;ibxbindings;fmxobj;vclwinx;lmdrtrtfdb;rtl;DbxClientDriver;CustomIPTransport;vcldsnap;lmdrtprint;bindcomp;appanalytics;lmdrtdocking;IndyIPClient;bindcompvcl;TeeUI;dbxcds;VclSmp;lmdrttxtdb;adortl;JclVcl;dsnapxml;dbrtl;inetdbxpress;IndyProtocols;lmdrtshell;lmdrtstorage;JclContainers;lmdrtcore;fmxase;$(DCC_UsePackage)</DCC_UsePackage>
-        <DCC_ConsoleTarget>true</DCC_ConsoleTarget>
-        <UWP_DelphiLogo44>$(BDS)\bin\Artwork\Windows\UWP\delphi_UwpDefault_44.png</UWP_DelphiLogo44>
-        <UWP_DelphiLogo150>$(BDS)\bin\Artwork\Windows\UWP\delphi_UwpDefault_150.png</UWP_DelphiLogo150>
+        <DCC_UsePackage>DataSnapServer;vclwinx;emshosting;fmx;DbxCommonDriver;vclie;bindengine;VCLRESTComponents;IndyIPCommon;DBXMSSQLDriver;emsclient;appanalytics;IndyProtocols;vclx;dbxcds;vcledge;IndyIPClient;bindcompvclwinx;FmxTeeUI;emsedge;bindcompfmx;DBXFirebirdDriver;inetdb;ibmonitor;DbxClientDriver;Tee;soapmidas;vclactnband;TeeUI;dbexpress;DBXMySQLDriver;VclSmp;inet;DataSnapCommon;vcltouch;fmxase;DBXOdbcDriver;dbrtl;fmxdae;TeeDB;CustomIPTransport;DataSnapIndy10ServerTransport;DataSnapConnectors;DBXInterBaseDriver;vcldsnap;IndySystem;Skia.Package.VCL;vcldb;ibxbindings;vclFireDAC;bindcomp;DataSnapServerMidas;emsserverresource;IndyCore;RESTBackendComponents;bindcompdbx;rtl;RESTComponents;DBXSqliteDriver;vcl;adortl;dsnapxml;IndyIPServer;DataSnapClient;DataSnapProviderClient;dsnapcon;DBXSybaseASEDriver;DBXDb2Driver;vclimg;DataSnapFireDAC;emsclientfiredac;inetdbxpress;xmlrtl;tethering;ibxpress;bindcompvcl;dsnap;DBXSybaseASADriver;CloudService;DBXOracleDriver;DBXInformixDriver;vclib;DataSnapNativeClient;bindcompvclsmp;FMXTee;fmxobj;DatasnapConnectorsFreePascal;soaprtl;soapserver;$(DCC_UsePackage)</DCC_UsePackage>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1)'!=''">
         <DCC_Define>DEBUG;$(DCC_Define)</DCC_Define>
@@ -73,9 +71,15 @@
         <DCC_GenerateStackFrames>true</DCC_GenerateStackFrames>
         <DCC_DebugInfoInExe>true</DCC_DebugInfoInExe>
         <DCC_RemoteDebug>true</DCC_RemoteDebug>
+        <DCC_IntegerOverflowCheck>true</DCC_IntegerOverflowCheck>
+        <DCC_RangeChecking>true</DCC_RangeChecking>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1_Win32)'!=''">
         <DCC_RemoteDebug>false</DCC_RemoteDebug>
+        <Debugger_RunParams>-exit:Pause</Debugger_RunParams>
+        <VerInfo_Locale>1033</VerInfo_Locale>
+        <Manifest_File>(Ohne)</Manifest_File>
+        <AppDPIAwarenessMode>none</AppDPIAwarenessMode>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2)'!=''">
         <DCC_LocalDebugSymbols>false</DCC_LocalDebugSymbols>
@@ -87,11 +91,9 @@
         <DelphiCompile Include="$(MainSource)">
             <MainSource>MainSource</MainSource>
         </DelphiCompile>
-        <DCCReference Include="Application.pas"/>
-        <DCCReference Include="Debug.pas"/>
-        <DCCReference Include="DateTimeHelper.pas"/>
-        <DCCReference Include="NetFormat.pas"/>
-        <None Include="README.md"/>
+        <DCCReference Include="FStrTests.pas"/>
+        <DCCReference Include="..\NetFormat\VoTools.FStr.pas"/>
+        <DCCReference Include="..\NetFormat\VoTools.NetFormat.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
@@ -110,8 +112,12 @@
         <BorlandProject>
             <Delphi.Personality>
                 <Source>
-                    <Source Name="MainSource">NetFormatTest.dpr</Source>
+                    <Source Name="MainSource">Tests.dpr</Source>
                 </Source>
+                <Excluded_Packages>
+                    <Excluded_Packages Name="$(BDSBIN)\dcloffice2k290.bpl">Microsoft Office 2000 Sample Automation Server Wrapper Components</Excluded_Packages>
+                    <Excluded_Packages Name="$(BDSBIN)\dclofficexp290.bpl">Microsoft Office XP Sample Automation Server Wrapper Components</Excluded_Packages>
+                </Excluded_Packages>
             </Delphi.Personality>
             <Deployment Version="4">
                 <DeployFile LocalName="$(BDS)\Redist\iossimulator\libcgunwind.1.0.dylib" Class="DependencyModule">
@@ -129,19 +135,12 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="README.md" Configuration="Debug" Class="ProjectFile">
+                <DeployFile LocalName="Win32\Debug\Tests.exe" Configuration="Debug" Class="ProjectOutput">
                     <Platform Name="Win32">
-                        <RemoteDir>.\</RemoteDir>
+                        <RemoteName>Tests.exe</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="Win32\Debug\NetFormatTest.exe" Configuration="Debug" Class="ProjectOutput">
-                    <Platform Name="Win32">
-                        <RemoteName>NetFormatTest.exe</RemoteName>
-                        <Overwrite>true</Overwrite>
-                    </Platform>
-                </DeployFile>
-                <DeployFile LocalName="Win32\Debug\consoletest.exe" Configuration="Debug" Class="ProjectOutput"/>
                 <DeployClass Name="AdditionalDebugSymbols">
                     <Platform Name="iOSSimulator">
                         <Operation>1</Operation>
@@ -1082,7 +1081,6 @@
                 <ProjectRoot Platform="iOSDevice32" Name="$(PROJECTNAME).app"/>
                 <ProjectRoot Platform="iOSDevice64" Name="$(PROJECTNAME).app"/>
                 <ProjectRoot Platform="iOSSimARM64" Name="$(PROJECTNAME).app"/>
-                <ProjectRoot Platform="iOSSimulator" Name="$(PROJECTNAME).app"/>
                 <ProjectRoot Platform="Linux64" Name="$(PROJECTNAME)"/>
                 <ProjectRoot Platform="OSX32" Name="$(PROJECTNAME).app"/>
                 <ProjectRoot Platform="OSX64" Name="$(PROJECTNAME).app"/>

@@ -1,4 +1,4 @@
-unit Application;
+unit ExampleApp;
 
 interface
 
@@ -7,8 +7,8 @@ procedure Run();
 implementation
 
 uses
-  Winapi.Windows, Debug, System.SysUtils, System.DateUtils, DateTimeHelper,
-  NetFormat;
+  Winapi.Windows, System.SysUtils, System.DateUtils, DateTimeHelper,
+  VoTools.Debug, VoTools.FStr;
 
   procedure Run();
   var
@@ -23,9 +23,9 @@ uses
     TDebug.Print('Hallo {0:dd-MM-yyyy HH:mm:ss}', testdate);
     TDebug.Print('Hallo {0:hh}', testdate.AddHours(2));
     TDebug.Print('Hallo {0:C2}', 15);
+    TDebug.Print('Hallo {0:X2}', 26);
 
-
-    TDebug.Print(TStr('Hallo {0} {1:D4} {2} {3}').Params('Welt', 55, 7.7, testdate));
+    writeln(FStr('Hallo {0} {1:D4} {2} {3}').Params('Welt', 55, 7.7, testdate));
   end;
 end.
 

@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{47D9FEC8-8383-4C91-A23E-DC8E9DB1BE16}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="NetFormat\NetFormatLib.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="Tests\Tests.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="NetFormatLib">
+        <MSBuild Projects="NetFormat\NetFormatLib.dproj"/>
+    </Target>
+    <Target Name="NetFormatLib:Clean">
+        <MSBuild Projects="NetFormat\NetFormatLib.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="NetFormatLib:Make">
+        <MSBuild Projects="NetFormat\NetFormatLib.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Tests">
+        <MSBuild Projects="Tests\Tests.dproj"/>
+    </Target>
+    <Target Name="Tests:Clean">
+        <MSBuild Projects="Tests\Tests.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Tests:Make">
+        <MSBuild Projects="Tests\Tests.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="NetFormatLib;Tests"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="NetFormatLib:Clean;Tests:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="NetFormatLib:Make;Tests:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

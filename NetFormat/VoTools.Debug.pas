@@ -1,4 +1,11 @@
-unit Debug;
+unit VoTools.Debug;
+
+//The Debug-Unit emulates .Nets Debug.Print Method. It also forwards to the
+//FStr unit and provides integrated formating in Debug
+//Specifier C=Currency, D=Number, F=Float, X=Hex, further Infos in README.md
+
+//VoSs2o0o (c) 2024, Apache 2.0 License
+
 
 interface
 type
@@ -37,13 +44,13 @@ type
 implementation
 
 uses
-  NetFormat, Winapi.Windows;
+    VoTools.FStr, Winapi.Windows;
 
     class procedure TDebug.Print(const msg: string);
     var
       res: string;
     begin
-      res:= TStr(msg).Params(nil, nil, nil, nil, nil, nil, nil, nil, nil);
+      res:= FStr(msg).Params(nil, nil, nil, nil, nil, nil, nil, nil, nil);
       OutputDebugString(PWChar(res));
     end;
 
@@ -51,7 +58,7 @@ uses
     var
       res: string;
     begin
-      res:=TStr(msg).Params(val1, nil, nil, nil, nil, nil, nil, nil, nil);
+      res:=FStr(msg).Params(val1, nil, nil, nil, nil, nil, nil, nil, nil);
       OutputDebugString(PWChar(res));
     end;
 
@@ -59,7 +66,7 @@ uses
     var
       res: string;
     begin
-      res:=TStr(msg).Params(val1, val2, nil, nil, nil, nil, nil, nil, nil);
+      res:=FStr(msg).Params(val1, val2, nil, nil, nil, nil, nil, nil, nil);
       OutputDebugString(PWChar(res));
     end;
 
@@ -68,7 +75,7 @@ uses
     var
       res: string;
     begin
-      res:=TStr(msg).Params(val1, val2, val3, nil, nil, nil, nil, nil, nil);
+      res:=FStr(msg).Params(val1, val2, val3, nil, nil, nil, nil, nil, nil);
       OutputDebugString(PWChar(res));
     end;
 
@@ -77,7 +84,7 @@ uses
     var
       res: string;
     begin
-      res:=TStr(msg).Params(val1, val2, val3, val4, nil, nil, nil, nil, nil);
+      res:=FStr(msg).Params(val1, val2, val3, val4, nil, nil, nil, nil, nil);
       OutputDebugString(PWChar(res));
     end;
 
@@ -86,7 +93,7 @@ uses
     var
       res: string;
     begin
-      res:=TStr(msg).Params(val1, val2, val3, val4, val5, nil, nil, nil, nil);
+      res:=FStr(msg).Params(val1, val2, val3, val4, val5, nil, nil, nil, nil);
       OutputDebugString(PWChar(res));
     end;
 
@@ -96,7 +103,7 @@ uses
    var
       res: string;
     begin
-      res:=TStr(msg).Params(val1, val2, val3, val4, val5, val6, nil, nil, nil);
+      res:=FStr(msg).Params(val1, val2, val3, val4, val5, val6, nil, nil, nil);
       OutputDebugString(PWChar(res));
     end;
 
@@ -106,7 +113,7 @@ uses
     var
       res: string;
     begin
-      res:=TStr(msg).Params(val1, val2, val3, val4, val5, val6, val7, nil, nil);
+      res:=FStr(msg).Params(val1, val2, val3, val4, val5, val6, val7, nil, nil);
       OutputDebugString(PWChar(res));
     end;
 
@@ -116,7 +123,7 @@ uses
     var
       res: string;
     begin
-      res:=TStr(msg).Params(val1, val2, val3, val4, val5, val6, val7, val8, nil);
+      res:=FStr(msg).Params(val1, val2, val3, val4, val5, val6, val7, val8, nil);
       OutputDebugString(PWChar(res));
     end;
 
@@ -126,7 +133,7 @@ uses
    var
      res: string;
    begin
-     res:=TStr(msg).Params(val1, val2, val3, val4, val5, val6, val7, val8, val9);
+     res:=FStr(msg).Params(val1, val2, val3, val4, val5, val6, val7, val8, val9);
      OutputDebugString(PWChar(res));
    end;
 end.
