@@ -154,7 +154,7 @@ TStr('Hallo {0} {1:D4} {2} {3}').
 ```
 FStr('Hallo {0} {1:D4} {2} {3}').
                Params('Welt', 55, 7.7, testdate);
-NetFormat.TStr('Hallo {0} {1:D4} {2} {3}',
+TNetFormat.TStr('Hallo {0} {1:D4} {2} {3}',
                'Welt', 55, 7.7, testdate);
 ```
 - Namespace VTools added to avoid conficts
