@@ -2,7 +2,7 @@
 
 Core of this collection is the NetFormat-Unit. Use it to easily format a string in Delphi.
 
-```
+```delphi
 test:= FStr('Hallo {0} {1:D2} {2:dd-MM-yyyy HH:mm:ss}').Params('Test', 2.2, testdate.Now)
 ```
 Result:
@@ -18,7 +18,7 @@ It is testet in Delphi 10.3
 
 ## Simple Syntax
 
-```
+```delphi
 test:= FStr('Hallo').ToString()
 test:= FStr('Hallo {0}').Params('Test')
 test:= FStr('Hallo {0}').Params(2)
@@ -35,7 +35,7 @@ Use {0} till {9} to specifiy the Position of Parameter.
 
 ## Complex Syntax
 
-```
+```delphi
 test:= FStr('Hallo {0:F2}').Params(2)
 ```
 
@@ -47,7 +47,7 @@ Hallo 2.00
 Use a ':', one of the Spezifier and 'C', 'D' or 'F' followed by a number.
 More about the Spezifiers below.
 
-```
+```delphi
 test:= FStr('Hallo {0:dd.MM.}').Params(testdate.Now)
 ```
 
@@ -98,7 +98,7 @@ Its like Microsoft Format Specifier.
 
 ## Alternative Call NetFormat
 
-```
+```delphi
 test:= TNetFormat.Str('Hallo {0} {1:D2} {2:dd-MM-yyyy HH:mm:ss}', 'Test', 2.2, testdate.Now)
 ```
 
@@ -106,7 +106,7 @@ test:= TNetFormat.Str('Hallo {0} {1:D2} {2:dd-MM-yyyy HH:mm:ss}', 'Test', 2.2, t
 
 for fast and easy debugging an TDebug.Print Funktion is added. It work like the TNetFormat.Str method.
 
-```
+```delphi
 test:= Debug.Print('Hallo {0} {1:D2} {2:dd-MM-yyyy HH:mm:ss}', 'Test', 2.2, testdate.Now)
 ```
 
@@ -120,7 +120,7 @@ If you own Delphi 11, a TDateTimeHelper is integrated in System.DateUtils with U
 
 You can specifiy your own Formatsettings with 'fmt' (TFormatSettings or LCID):
 
-```
+```delphi
 test:= FStr('Hallo {0:F2}').fmt('de-DE').Params(2)
 ```
 In the example above, FStr uses German Settings, '1,00 €' istead of '$1.00' for example.
@@ -132,12 +132,12 @@ Default is your machine standard.
 
 ### 25.01.2024: Version 2.0
 - Old:
-```
+```delphi
 NetFormat.ToString('Hallo {0} {1:D4} {2} {3}',
                    'Welt', 55, 7.7, testdate);
 ```
 - New: Format changed, I have found a more ellegant and slightly shorter Method:
-```
+```delphi
 TStr('Hallo {0} {1:D4} {2} {3}').
     Params('Welt', 55, 7.7, testdate);
 ```
@@ -146,13 +146,13 @@ TStr('Hallo {0} {1:D4} {2} {3}').
 
 ### 28.01.2024: Version 3.0
 - Old:
-```
+```delphi
 TStr('Hallo {0} {1:D4} {2} {3}').
     Params('Welt', 55, 7.7, testdate);
 ```
 - New: TStr -> FStr, and old Format readded, beause some People wants a more
   Delphi-Format like command:
-```
+```delphi
 FStr('Hallo {0} {1:D4} {2} {3}').
                Params('Welt', 55, 7.7, testdate);
 TNetFormat.TStr('Hallo {0} {1:D4} {2} {3}',
