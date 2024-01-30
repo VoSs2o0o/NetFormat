@@ -92,7 +92,11 @@ uses
           if ttypeInfo.Name = 'TDateTime' then
              result:= DateToStr(TValue.From<T>(val).AsExtended(), formatsettings)
           else
-             result:= TValue.From<T>(val).ToString(FormatSettings)
+             {$IF CompilerVersion >= 36}
+               result:= TValue.From<T>(val).ToString(FormatSettings)
+             {$else}
+               result:= TValue.From<T>(val).ToString()
+             {$endif}
         else
         begin
           if self.fType.ToLower() = 'c' then
@@ -128,7 +132,11 @@ uses
             result:=FormatDateTime(self.dtfType(), tmpdbl, FormatSettings)
           end
           else
-            result:= TValue.From<T>(val).ToString(FormatSettings);
+             {$IF CompilerVersion >= 36}
+               result:= TValue.From<T>(val).ToString(FormatSettings)
+             {$else}
+               result:= TValue.From<T>(val).ToString()
+             {$endif}
         end
      else if ttypeInfo.Kind in [tkChar, tkString, tkClass,
                                 tkWChar, tkWString, tkVariant, tkUString] then

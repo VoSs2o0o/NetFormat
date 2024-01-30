@@ -164,3 +164,8 @@ TNetFormat.TStr('Hallo {0} {1:D4} {2} {3}',
 - Tests added
 - 'writeln' to Example added, to also have an console output
 - some minors changes to README
+
+### 30.01.2024: Version 3.0.1
+- Bugfix for compatiblility with <D12 Versions
+- small fixes in readme
+- moved readme, license, groupproj to root
